@@ -987,6 +987,97 @@ body.hero-lightbox-open {
   color: var(--ink-soft);
 }
 
+/* Testimonials */
+.testimonials {
+  background: var(--mist);
+}
+
+.testimonials-inner {
+  max-width: min(960px, 100%);
+}
+
+.testimonials-header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.testimonials-header h2 {
+  margin-bottom: 0;
+  color: var(--ink);
+}
+
+.testimonials .eyebrow {
+  color: var(--sage-deep);
+}
+
+.testimonials-grid {
+  display: grid;
+  gap: var(--space-lg);
+  align-items: stretch;
+}
+
+@media (min-width: 868px) {
+  .testimonials-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+  }
+}
+
+.testimonial-item {
+  margin: 0;
+}
+
+.testimonial-quote {
+  margin: 0;
+  height: 100%;
+  padding: var(--space-lg);
+  background: var(--white);
+  border-radius: var(--radius);
+  border-left: 3px solid var(--sage);
+  box-shadow: 0 12px 32px rgba(28, 36, 32, 0.06);
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonial-quote p {
+  margin: 0 0 var(--space-sm);
+  font-family: var(--font-serif);
+  font-size: 1.08rem;
+  font-style: italic;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 52ch;
+}
+
+.testimonial-quote p:last-of-type {
+  margin-bottom: var(--space-md);
+}
+
+.testimonial-cite {
+  margin-top: auto;
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(74, 107, 90, 0.15);
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  text-align: left;
+}
+
+.testimonial-name {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.testimonial-role,
+.testimonial-org {
+  font-size: 0.88rem;
+  color: var(--sage-deep);
+}
+
 /* On-page Contact Us (dark section, classic form) */
 .contact-page {
   background: var(--ink);
