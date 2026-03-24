@@ -50,6 +50,22 @@
   var quickBtn = document.getElementById("contact-chat-quick");
   var timeInEl = document.getElementById("contact-chat-time-in");
 
+  function trackContactMeClick(ctaLocation) {
+    if (typeof window.gtag !== "function") return;
+    window.gtag("event", "contact_me_click", {
+      cta_location: ctaLocation,
+    });
+  }
+
+  function contactCtaLocationFromElement(el) {
+    if (!el) return "unknown";
+    if (el.closest("#site-nav")) return "header_nav";
+    if (el.closest(".hero")) return "hero";
+    if (el.closest("#events")) return "events";
+    if (el.closest("#what-we-offer")) return "what_we_offer";
+    return "other";
+  }
+
   if (timeInEl) {
     timeInEl.textContent = formatChatTime(new Date());
   }
@@ -249,8 +265,16 @@
     if (!trigger) return;
     if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     e.preventDefault();
+    trackContactMeClick("floating_chat");
     if (nav && nav.classList.contains("is-open")) setNavOpen(false);
     openContactModal();
+  });
+
+  document.addEventListener("click", function (e) {
+    var link = e.target.closest('a[href="#contact"]');
+    if (!link) return;
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    trackContactMeClick(contactCtaLocationFromElement(link));
   });
 
   if (location.hash === "#contact") {
