@@ -57,6 +57,14 @@
     });
   }
 
+  function trackBookingClick(actionType, ctaLocation, destination) {
+    if (typeof window.gtag !== "function") return;
+    window.gtag("event", actionType, {
+      cta_location: ctaLocation || "unknown",
+      destination: destination || "",
+    });
+  }
+
   function contactCtaLocationFromElement(el) {
     if (!el) return "unknown";
     if (el.closest("#site-nav")) return "header_nav";
@@ -275,6 +283,28 @@
     if (!link) return;
     if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     trackContactMeClick(contactCtaLocationFromElement(link));
+  });
+
+  document.addEventListener("click", function (e) {
+    var bookLink = e.target.closest("[data-book-now]");
+    if (!bookLink) return;
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    trackBookingClick(
+      "book_now_click",
+      bookLink.getAttribute("data-cta-location"),
+      bookLink.getAttribute("href")
+    );
+  });
+
+  document.addEventListener("click", function (e) {
+    var payLink = e.target.closest("[data-pay-now]");
+    if (!payLink) return;
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    trackBookingClick(
+      "pay_now_click",
+      payLink.getAttribute("data-cta-location"),
+      payLink.getAttribute("href")
+    );
   });
 
   if (location.hash === "#contact") {
