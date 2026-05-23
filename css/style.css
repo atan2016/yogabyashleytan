@@ -141,12 +141,28 @@ a:hover {
 }
 
 .logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
   font-family: var(--font-serif);
   font-size: 1.35rem;
   font-weight: 600;
   color: var(--ink);
   text-decoration: none;
   letter-spacing: 0.02em;
+}
+
+.logo-mark {
+  display: block;
+  width: 2.06rem;
+  height: 2.53rem;
+  object-fit: cover;
+  object-position: 50% center;
+  flex-shrink: 0;
+}
+
+.logo span {
+  margin-left: -0.19rem;
 }
 
 .logo:hover {
